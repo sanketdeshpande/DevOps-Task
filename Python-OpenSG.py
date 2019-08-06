@@ -1,3 +1,4 @@
+#This script is used to get all open ingress rules of Security Group
 import json
 import boto3
 import os
