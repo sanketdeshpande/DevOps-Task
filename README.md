@@ -1,5 +1,5 @@
 # DevOps-Task
-Used to perform small tasks
+Ansible, Docker, Python tasks
 
 **Task 1:**
 * Ansible Playbook to do the following tasks on 2 Servers ( 1 Ubuntu and 1 CentOS ) :
