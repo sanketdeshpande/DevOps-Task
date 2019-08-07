@@ -27,3 +27,30 @@
      - iftop
      - iotop
      - ncdu
+
+  - name: "copy file to remote host"
+    copy:
+      src: /home/centos/ANSIBLE/sample-script.sh
+      dest: /home
+    become: yes
+
+  - name: "Give execution permission for Script"
+    file:
+        path: /home/sample-script.sh
+        mode: a+x
+    become: yes
+
+
+  - name: "Execute script on CentOS only"
+    command: sh /home/sample-script.sh
+    become: yes
+    when:
+    - ansible_distribution == "CentOS"
+
+  - name: "Copy the output file back to Ansible host"
+    fetch:
+     src: /home/output.txt
+     dest: /home/centos/ANSIBLE/output
+    become: yes
+    when:
+     - ansible_distribution == "CentOS"
