@@ -1,0 +1,29 @@
+---
+- hosts: all
+
+  tasks:
+  - name: "Run commands on centos"
+    yum:
+      name: "{{ item }}"
+      state: latest
+    become: yes
+    when:
+    - ansible_distribution == "CentOS"
+    with_items:
+     - htop
+     - iftop
+     - iotop
+     - ncdu
+
+  - name: "Run commands on ubuntu"
+    apt:
+      name: "{{ item }}"
+      state: present
+    become: yes
+    when:
+    - ansible_distribution == "Ubuntu"
+    with_items:
+     - htop
+     - iftop
+     - iotop
+     - ncdu
