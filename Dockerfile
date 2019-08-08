@@ -1,6 +1,4 @@
-
 FROM centos:7
-
 RUN yum -y update && yum clean all && yum -y install wget && yum -y install tar && yum -y install https://centos7.iuscommunity.org/ius-release.rpm && yum -y install python36u && yum install httpd httpd-tools -y
 RUN echo 'alias python="/usr/bin/python3.6"' >> ~/.bashrc
 
@@ -39,12 +37,9 @@ chmod g+r conf/* && \
 chown -R tomcat webapps/ && \
 chgrp -R tomcat bin && \
 chmod g+rwx bin && \
-chmod g+r bin/*
+chmod a+x bin/* && \
+mkdir /opt/tomcat/logs
 
 EXPOSE 8080
-CMD [systemctl restart tomcat.service]
-
-#to Build image use: docker build -t tweleve .
-
-#to run the conainer use:
-# docker run -it -d -p 8080:7080 tweleve
+WORKDIR /opt/tomcat/bin
+CMD ["sh", "startup.sh", "run"]
