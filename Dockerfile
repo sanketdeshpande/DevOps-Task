@@ -43,3 +43,8 @@ chmod g+r bin/*
 
 EXPOSE 8080
 CMD [systemctl restart tomcat.service]
+
+#to Build image use: docker build -t tweleve .
+
+#to run the conainer use:
+# docker run -it -d -p 8080:7080 tweleve
